@@ -1,11 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Telegram.Bot.Types;
+using TelegramBot.Interfaces;
 
 namespace TelegramBot.Controllers
 {
     public class BotReminderController : Controller
     {
-        public IActionResult Index()
+        private readonly IChatService chatService;
+
+        public BotReminderController(IChatService chatService)
         {
+            this.chatService = chatService;
+        }
+        [HttpPost]
+        [Route("api/inbox-message")]
+        public IActionResult InboxMessage([FromBody]Update update)
+        {
+            this.chatService.IncomingMessage(update);
             return this.Ok();
         }
     }

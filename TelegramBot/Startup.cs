@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TelegramBot.Configurations;
 using TelegramBot.Interfaces;
 using TelegramBot.Services;
 
@@ -23,6 +24,7 @@ namespace TelegramBot
             services.AddSingleton<IBotService, BotService>();
 
             services.Configure<BotConfiguration>(Configuration.GetSection("BotConfiguration"));
+            
             services.AddMvc();
         }
 
