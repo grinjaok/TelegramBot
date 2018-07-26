@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using TelegramBot.Configurations;
 using TelegramBot.Interfaces;
 using TelegramBot.Services;
@@ -22,6 +23,7 @@ namespace TelegramBot
         {
             services.AddScoped<IChatService, ChatService>();
             services.AddSingleton<IBotService, BotService>();
+            services.AddSingleton<IStoreService, StoreService>();
 
             services.Configure<BotConfiguration>(Configuration.GetSection("BotConfiguration"));
             

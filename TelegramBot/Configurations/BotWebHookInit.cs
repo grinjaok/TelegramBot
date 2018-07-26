@@ -13,13 +13,13 @@ namespace TelegramBot.Configurations
             this.config = config.Value;
         }
 
-        public async Task Initialize()
+        public void Initialize()
         {
             using (HttpClient httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new Uri("https://api.telegram.org/");
                 string endpoint = $"bot{this.config.BotToken}/setWebhook?url={this.config.BaseUrl}/api/inbox-message";
-                await httpClient.GetAsync(new Uri(endpoint));
+                httpClient.GetAsync(new Uri(endpoint));
             }
         }
     }
