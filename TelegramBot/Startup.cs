@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using TelegramBot.Configurations;
 using TelegramBot.Interfaces;
 using TelegramBot.Services;
+using TelegramBot.Services.ConversationProcessors;
 
 namespace TelegramBot
 {
@@ -23,8 +24,12 @@ namespace TelegramBot
         {
             services.AddScoped<IChatService, ChatService>();
             services.AddSingleton<IBotService, BotService>();
-            services.AddSingleton<IStoreService, StoreService>();
-
+            services.AddSingleton<IStorageService, StorageService>();
+            services.AddScoped<IConversationProcessorFactory , ConversationProcessorFactory>();
+            services.AddScoped<IConversationProcessor, WelcomeMessageProcessor>();
+            services.AddScoped<IConversationProcessor, DescriptionProcessor>();
+            services.AddScoped<IConversationProcessor, DateProcessor>();
+            services.AddScoped<IConversationProcessor, TimeProcessor>();
             services.Configure<BotConfiguration>(Configuration.GetSection("BotConfiguration"));
             
             services.AddMvc();

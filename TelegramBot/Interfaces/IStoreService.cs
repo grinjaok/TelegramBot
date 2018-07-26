@@ -3,10 +3,14 @@ using TelegramBot.Entites;
 
 namespace TelegramBot.Interfaces
 {
-    public interface IStoreService
+    public interface IStorageService
     {
         void AddEventToStore();
 
         List<IncomingEvent> GetNextEvents();
+
+        ChatHistory GetChatById(int chatId);
+
+        void AddUpdateChat(ChatHistory chatHistory);
     }
 }

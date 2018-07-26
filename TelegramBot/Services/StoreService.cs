@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TelegramBot.Entites;
 using TelegramBot.Interfaces;
 
 namespace TelegramBot.Services
 {
-    public class StoreService : IStoreService
+    public class StorageService : IStorageService
     {
         private List<IncomingEvent> eventsStore;
-        private List<Chat> chats;
+        private List<ChatHistory> chats;
 
-        public StoreService()
+        public StorageService()
         {
             this.eventsStore = new List<IncomingEvent>();
-            this.chats = new List<Chat>();
+            this.chats = new List<ChatHistory>();
         }
 
         public void AddEventToStore()
@@ -25,12 +26,12 @@ namespace TelegramBot.Services
             throw new NotImplementedException();
         }
 
-        public Chat GetChatById(long chatId)
+        public ChatHistory GetChatById(int chatId)
         {
-            throw new NotImplementedException();
+            return this.chats.FirstOrDefault(x => x.ChatId == chatId);
         }
 
-        public void AddUpdateChat(Chat chat)
+        public void AddUpdateChat(ChatHistory chatHistory)
         {
 
         }

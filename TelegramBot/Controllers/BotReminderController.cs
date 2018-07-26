@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot.Types;
 using TelegramBot.Interfaces;
 
@@ -14,9 +15,9 @@ namespace TelegramBot.Controllers
         }
         [HttpPost]
         [Route("api/inbox-message")]
-        public IActionResult InboxMessage([FromBody]Update update)
+        public async Task<IActionResult> InboxMessage([FromBody]Update update)
         {
-            this.chatService.IncomingMessage(update);
+            await this.chatService.IncomingMessage(update);
             return this.Ok();
         }
     }

@@ -5,9 +5,11 @@ namespace TelegramBot.Services.ConversationProcessors
 {
     public class DescriptionProcessor : IConversationProcessor
     {
+        private ChatStatusEnum chatStatus = ChatStatusEnum.DescriptionEntered;
+
         public bool CanProcess(ChatStatusEnum chatStatus)
         {
-            throw new System.NotImplementedException();
+            return this.chatStatus == chatStatus;
         }
 
         public string ProcessMessage(string message)
