@@ -24,13 +24,13 @@ namespace TelegramBot.Services
 
         public async Task IncomingMessage(Update update)
         {
-            ChatHistory chat = this.storageService.GetChatById(update.Id) ?? this.CreateNewChat(update.Id);
+            ChatHistory chat = this.storageService.GetChatById(update.Message.Chat.Id) ?? this.CreateNewChat(update.Message.Chat.Id);
             IConversationProcessor processor = this.conversationProcessorFactory.GetConversationProcessor(chat.ChatProgress.Keys.Last());
             string responseMessage = processor.ProcessMessage(update.Message.Text);
             await this.botService.Client.SendTextMessageAsync(chat.ChatId, responseMessage);
         }
 
-        private ChatHistory CreateNewChat(int id)
+        private ChatHistory CreateNewChat(long id)
         {
             return new ChatHistory()
             {

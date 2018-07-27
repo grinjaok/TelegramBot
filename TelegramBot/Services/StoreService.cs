@@ -26,7 +26,7 @@ namespace TelegramBot.Services
             throw new NotImplementedException();
         }
 
-        public ChatHistory GetChatById(int chatId)
+        public ChatHistory GetChatById(long chatId)
         {
             return this.chats.FirstOrDefault(x => x.ChatId == chatId);
         }

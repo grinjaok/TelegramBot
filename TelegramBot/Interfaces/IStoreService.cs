@@ -9,7 +9,7 @@ namespace TelegramBot.Interfaces
 
         List<IncomingEvent> GetNextEvents();
 
-        ChatHistory GetChatById(int chatId);
+        ChatHistory GetChatById(long chatId);
 
         void AddUpdateChat(ChatHistory chatHistory);
     }
