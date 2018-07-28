@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TelegramBot.Enums;
 
-namespace TelegramBot.Entites
+namespace TelegramBot.Entities
 {
     public class ChatHistory
     {

@@ -1,4 +1,5 @@
-﻿using TelegramBot.Enums;
+﻿using TelegramBot.Entities;
+using TelegramBot.Enums;
 
 namespace TelegramBot.Interfaces
 {
@@ -6,6 +7,6 @@ namespace TelegramBot.Interfaces
     {
         bool CanProcess(ChatStatusEnum chatStatus);
 
-        string ProcessMessage(string message);
+        string ProcessMessage(string message, ChatHistory chat);
     }
 }

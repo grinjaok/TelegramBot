@@ -1,4 +1,5 @@
-﻿using TelegramBot.Enums;
+﻿using TelegramBot.Entities;
+using TelegramBot.Enums;
 using TelegramBot.Interfaces;
 
 namespace TelegramBot.Services.ConversationProcessors
@@ -12,7 +13,7 @@ namespace TelegramBot.Services.ConversationProcessors
             return this.chatStatus == chatStatus;
         }
 
-        public string ProcessMessage(string message)
+        public string ProcessMessage(string message, ChatHistory chat)
         {
             throw new System.NotImplementedException();
         }

@@ -2,8 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
-using TelegramBot.Entites;
-using TelegramBot.Enums;
+using TelegramBot.Entities;
 using TelegramBot.Interfaces;
 
 namespace TelegramBot.Services
@@ -26,7 +25,7 @@ namespace TelegramBot.Services
         {
             ChatHistory chat = this.storageService.GetChatById(update.Message.Chat.Id) ?? this.CreateNewChat(update.Message.Chat.Id);
             IConversationProcessor processor = this.conversationProcessorFactory.GetConversationProcessor(chat.ChatProgress.Keys.Last());
-            string responseMessage = processor.ProcessMessage(update.Message.Text);
+            string responseMessage = processor.ProcessMessage(update.Message.Text, chat);
             await this.botService.Client.SendTextMessageAsync(chat.ChatId, responseMessage);
         }
 

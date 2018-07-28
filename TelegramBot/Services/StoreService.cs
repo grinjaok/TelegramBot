@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TelegramBot.Entites;
+using TelegramBot.Entities;
 using TelegramBot.Interfaces;
 
 namespace TelegramBot.Services
@@ -31,9 +31,9 @@ namespace TelegramBot.Services
             return this.chats.FirstOrDefault(x => x.ChatId == chatId);
         }
 
-        public void AddUpdateChat(ChatHistory chatHistory)
+        public void AddNewChat(ChatHistory chatHistory)
         {
-
+            this.chats.Add(chatHistory);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TelegramBot.Entites
+namespace TelegramBot.Entities
 {
     public class IncomingEvent
     {

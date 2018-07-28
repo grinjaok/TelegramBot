@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TelegramBot.Entites;
+using TelegramBot.Entities;
 
 namespace TelegramBot.Interfaces
 {
@@ -11,6 +11,6 @@ namespace TelegramBot.Interfaces
 
         ChatHistory GetChatById(long chatId);
 
-        void AddUpdateChat(ChatHistory chatHistory);
+        void AddNewChat(ChatHistory chatHistory);
     }
 }
