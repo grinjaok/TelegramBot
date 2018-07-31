@@ -15,9 +15,9 @@ namespace TelegramBot.Controllers
         }
         [HttpPost]
         [Route("api/inbox-message")]
-        public async Task<IActionResult> InboxMessage([FromBody]Update update)
+        public IActionResult InboxMessage([FromBody]Update update)
         {
-            await this.chatService.IncomingMessage(update);
+            this.chatService.IncomingMessage(update);
             return this.Ok();
         }
     }

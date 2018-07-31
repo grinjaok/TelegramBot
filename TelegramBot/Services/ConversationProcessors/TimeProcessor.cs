@@ -25,7 +25,7 @@ namespace TelegramBot.Services.ConversationProcessors
         {
             try
             {
-                var parsedTime = DateTime.ParseExact("message", "HH:mm",
+                var parsedTime = DateTime.ParseExact(message, "HH:mm",
                     System.Globalization.CultureInfo.InvariantCulture);
                 var parsedDate =
                     DateTime.Parse(chat.ChatProgress.First(x => x.Key == ChatStatusEnum.DateEntered).Value);

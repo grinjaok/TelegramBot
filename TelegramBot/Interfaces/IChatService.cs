@@ -5,6 +5,6 @@ namespace TelegramBot.Interfaces
 {
     public interface IChatService
     {
-        Task IncomingMessage(Update update);
+        void IncomingMessage(Update update);
     }
 }

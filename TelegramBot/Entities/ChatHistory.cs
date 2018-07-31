@@ -11,10 +11,7 @@ namespace TelegramBot.Entities
 
         public ChatHistory()
         {
-            this.ChatProgress = new Dictionary<ChatStatusEnum, string>()
-            {
-                { ChatStatusEnum.HelloMessage, string.Empty }
-            };
+            this.ChatProgress = new Dictionary<ChatStatusEnum, string>();
         }
     }
 }
