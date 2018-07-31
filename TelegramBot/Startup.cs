@@ -30,6 +30,7 @@ namespace TelegramBot
             services.AddScoped<IConversationProcessor, DescriptionProcessor>();
             services.AddScoped<IConversationProcessor, DateProcessor>();
             services.AddScoped<IConversationProcessor, TimeProcessor>();
+            services.AddScoped<IEventService, EventService>();
             services.Configure<BotConfiguration>(Configuration.GetSection("BotConfiguration"));
             
             services.AddMvc();

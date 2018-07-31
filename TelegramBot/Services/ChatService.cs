@@ -19,7 +19,6 @@ namespace TelegramBot.Services
             this.botService = botService;
             this.storageService = storageService;
             this.conversationProcessorFactory = conversationProcessorFactory;
-
         }
 
         public void IncomingMessage(Update update)
