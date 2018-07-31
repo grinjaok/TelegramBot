@@ -17,13 +17,19 @@ namespace TelegramBot.Services
             this.chats = new List<ChatHistory>();
         }
 
-        public void AddEventToStore()
+        public void AddEventToStore(IncomingEvent incomingEvent)
         {
+            this.eventsStore.Add(incomingEvent);
         }
 
         public List<IncomingEvent> GetNextEvents()
         {
-            throw new NotImplementedException();
+            return this.eventsStore;
+        }
+
+        public void RemoveEvent(IncomingEvent incomingEvent)
+        {
+            this.eventsStore.Remove(incomingEvent);
         }
 
         public ChatHistory GetChatById(long chatId)
@@ -34,6 +40,11 @@ namespace TelegramBot.Services
         public void AddNewChat(ChatHistory chatHistory)
         {
             this.chats.Add(chatHistory);
+        }
+
+        public void RemoveChat(ChatHistory chatHistory)
+        {
+            this.chats.Remove(chatHistory);
         }
     }
 }

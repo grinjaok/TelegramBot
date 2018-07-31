@@ -1,4 +1,5 @@
-﻿using TelegramBot.Entities;
+﻿using System;
+using TelegramBot.Entities;
 using TelegramBot.Enums;
 using TelegramBot.Interfaces;
 
@@ -15,7 +16,22 @@ namespace TelegramBot.Services.ConversationProcessors
 
         public string ProcessMessage(string message, ChatHistory chat)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var parsedDate = DateTime.Parse(message);
+                if (parsedDate.Date < DateTime.Now.Date)
+                {
+                    return Resource.ResponseMessages.DATE_SMALLER_THAN_NOW;
+                }
+
+                chat.ChatProgress.Add(ChatStatusEnum.DateEntered, message);
+                return Resource.ResponseMessages.DATE_RESPONSE_MESSAGE;
+            }
+            catch (Exception)
+            {
+                return Resource.ResponseMessages.CANNOT_PARSE_DATE_MESSAGE;
+            }
+
         }
     }
 }

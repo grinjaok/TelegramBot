@@ -15,7 +15,8 @@ namespace TelegramBot.Services.ConversationProcessors
 
         public string ProcessMessage(string message, ChatHistory chat)
         {
-            throw new System.NotImplementedException();
+            chat.ChatProgress.Add(ChatStatusEnum.DescriptionEntered, message);
+            return Resource.ResponseMessages.DESCRIPTION_RESPONSE_MESSAGE;
         }
     }
 }

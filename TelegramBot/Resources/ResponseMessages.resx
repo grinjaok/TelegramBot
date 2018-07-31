@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CANNOT_PARSE_DATE_MESSAGE" xml:space="preserve">
+    <value>Cannot recognize entered date, please enter date in mm/dd/yyyy format</value>
+  </data>
+  <data name="DATE_RESPONSE_MESSAGE" xml:space="preserve">
+    <value>Enter the time when it should be</value>
+  </data>
+  <data name="DATE_SMALLER_THAN_NOW" xml:space="preserve">
+    <value>The entered date must be greater than or equal to today's date</value>
+  </data>
+  <data name="DESCRIPTION_RESPONSE_MESSAGE" xml:space="preserve">
+    <value>Enter the date when it should be</value>
+  </data>
+  <data name="TIME_CANNOT_PARSE" xml:space="preserve">
+    <value>Cannot recognize entered time, please enter date in HH:mm format</value>
+  </data>
+  <data name="TIME_RESPONSE_MESSAGE" xml:space="preserve">
+    <value>Event has been created successfully</value>
+  </data>
+  <data name="TIME_SMALLER_THAN_NOW" xml:space="preserve">
+    <value>The entered time should be greater than now</value>
+  </data>
   <data name="WELCOME_RESPONSE_MESSAGE" xml:space="preserve">
-    <value>Hi, please enter event description</value>
+    <value>Hi, please enter event description.</value>
   </data>
 </root>

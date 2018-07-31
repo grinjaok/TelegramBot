@@ -61,7 +61,70 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hi, please enter event description.
+        ///   Looks up a localized string similar to Cannot recognize entered date, please enter date in mm/dd/yyyy format.
+        /// </summary>
+        public static string CANNOT_PARSE_DATE_MESSAGE {
+            get {
+                return ResourceManager.GetString("CANNOT_PARSE_DATE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the time when it should be.
+        /// </summary>
+        public static string DATE_RESPONSE_MESSAGE {
+            get {
+                return ResourceManager.GetString("DATE_RESPONSE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The entered date must be greater than or equal to today&apos;s date.
+        /// </summary>
+        public static string DATE_SMALLER_THAN_NOW {
+            get {
+                return ResourceManager.GetString("DATE_SMALLER_THAN_NOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the date when it should be.
+        /// </summary>
+        public static string DESCRIPTION_RESPONSE_MESSAGE {
+            get {
+                return ResourceManager.GetString("DESCRIPTION_RESPONSE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot recognize entered time, please enter date in HH:mm format.
+        /// </summary>
+        public static string TIME_CANNOT_PARSE {
+            get {
+                return ResourceManager.GetString("TIME_CANNOT_PARSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event has been created successfully.
+        /// </summary>
+        public static string TIME_RESPONSE_MESSAGE {
+            get {
+                return ResourceManager.GetString("TIME_RESPONSE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The entered time should be greater than now.
+        /// </summary>
+        public static string TIME_SMALLER_THAN_NOW {
+            get {
+                return ResourceManager.GetString("TIME_SMALLER_THAN_NOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi, please enter event description..
         /// </summary>
         public static string WELCOME_RESPONSE_MESSAGE {
             get {
