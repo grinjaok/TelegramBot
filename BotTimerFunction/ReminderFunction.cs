@@ -9,9 +9,9 @@ namespace BotTimerFunction
     public static class ReminderFunction
     {
         [FunctionName("ReminderFunction")]
-        public static void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, TraceWriter log)
+        public static void Run([TimerTrigger("0 */1 * * * *")]TimerInfo myTimer, TraceWriter log)
         {
-            var botUrl = ConfigurationManager.AppSettings["BotUrl"];
+            var botUrl = Environment.GetEnvironmentVariable("BotUrl");
 
             using (HttpClient httpClient = new HttpClient())
             {
