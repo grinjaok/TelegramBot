@@ -5,21 +5,21 @@ namespace TelegramBot.Services
     public class EventService : IEventService
     {
         private readonly IBotService botService;
-        private readonly IStorageService storageService;
+        private readonly IEventStorageService eventStorageService;
 
-        public EventService(IBotService botService, IStorageService storageService)
+        public EventService(IBotService botService, IEventStorageService eventStorageService)
         {
             this.botService = botService;
-            this.storageService = storageService;
+            this.eventStorageService = eventStorageService;
         }
 
         public void RemindNextEvents()
         {
-            var nextEvents = this.storageService.GetNextEvents();
+            var nextEvents = this.eventStorageService.GetNextEvents();
             nextEvents.ForEach(x =>
             {
-                this.botService.Client.SendTextMessageAsync(x.ChatId, x.Description);
-                this.storageService.RemoveEvent(x);
+                this.botService.Client.SendTextMessageAsync(x.Id, x.Description);
+                this.eventStorageService.RemoveEvent(x);
             });
         }
     }

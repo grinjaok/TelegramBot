@@ -12,13 +12,13 @@ namespace TelegramBot.Services
     public class ChatService : IChatService
     {
         private readonly IBotService botService;
-        private readonly IStorageService storageService;
+        private readonly IChatStorageService chatStorageService;
         private readonly IConversationProcessorFactory conversationProcessorFactory;
 
-        public ChatService(IBotService botService, IStorageService storageService, IConversationProcessorFactory conversationProcessorFactory)
+        public ChatService(IBotService botService, IChatStorageService chatStorageService, IConversationProcessorFactory conversationProcessorFactory)
         {
             this.botService = botService;
-            this.storageService = storageService;
+            this.chatStorageService = chatStorageService;
             this.conversationProcessorFactory = conversationProcessorFactory;
         }
 
@@ -26,10 +26,10 @@ namespace TelegramBot.Services
         {
             try
             {
-                ChatHistory chat = this.storageService.GetChatById(update.Message.Chat.Id) ?? this.CreateNewChat(update.Message.Chat.Id);
+                ChatHistory chat = this.chatStorageService.GetChatById(update.Message.Chat.Id) ?? this.CreateNewChat(update.Message.Chat.Id);
                 IConversationProcessor processor = this.conversationProcessorFactory.GetConversationProcessor((ChatStatusEnum)chat.ChatProgress.Count);
                 string responseMessage = processor.ProcessMessage(update.Message.Text, chat);
-                this.botService.Client.SendTextMessageAsync(chat.ChatId, responseMessage);
+                this.botService.Client.SendTextMessageAsync(chat.Id, responseMessage);
             }
             catch (Exception e)
             {
@@ -40,7 +40,7 @@ namespace TelegramBot.Services
         {
             return new ChatHistory()
             {
-                ChatId = id
+                Id = id
             };
         }
     }

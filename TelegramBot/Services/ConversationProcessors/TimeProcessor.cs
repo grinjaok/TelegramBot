@@ -8,12 +8,14 @@ namespace TelegramBot.Services.ConversationProcessors
 {
     public class TimeProcessor : IConversationProcessor
     {
-        private readonly IStorageService storageService;
+        private readonly IEventStorageService eventStorageService;
+        private readonly IChatStorageService chatStorageService;
         private ChatStatusEnum chatStatus = ChatStatusEnum.TimeEntered;
 
-        public TimeProcessor(IStorageService storageService)
+        public TimeProcessor(IEventStorageService eventStorageService, IChatStorageService chatStorageService)
         {
-            this.storageService = storageService;
+            this.eventStorageService = eventStorageService;
+            this.chatStorageService = chatStorageService;
         }
 
         public bool CanProcess(ChatStatusEnum chatStatus)
@@ -38,13 +40,13 @@ namespace TelegramBot.Services.ConversationProcessors
 
                 var eventToAdd = new IncomingEvent()
                 {
-                    ChatId = chat.ChatId,
+                    Id = chat.Id,
                     Description = chat.ChatProgress.First(x => x.Key == ChatStatusEnum.DescriptionEntered).Value,
                     InvocationTime = eventDate
                 };
 
-                this.storageService.AddEventToStore(eventToAdd);
-                this.storageService.RemoveChat(chat);
+                this.eventStorageService.AddEventToStore(eventToAdd);
+                this.chatStorageService.RemoveChat(chat);
                 return Resource.ResponseMessages.TIME_RESPONSE_MESSAGE;
             }
             catch (Exception)

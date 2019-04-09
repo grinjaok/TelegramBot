@@ -7,11 +7,11 @@ namespace TelegramBot.Services.ConversationProcessors
     public class WelcomeMessageProcessor : IConversationProcessor
     {
         private ChatStatusEnum chatStatus = ChatStatusEnum.HelloMessage;
-        private readonly IStorageService storageService;
+        private readonly IChatStorageService chatStorageService;
 
-        public WelcomeMessageProcessor(IStorageService storageService)
+        public WelcomeMessageProcessor(IChatStorageService chatStorageService)
         {
-            this.storageService = storageService;
+            this.chatStorageService = chatStorageService;
         }
 
 
@@ -23,7 +23,7 @@ namespace TelegramBot.Services.ConversationProcessors
         public string ProcessMessage(string message, ChatHistory chat)
         {
             chat.ChatProgress[ChatStatusEnum.HelloMessage] = message;
-            this.storageService.AddNewChat(chat);
+            this.chatStorageService.AddNewChat(chat);
             return Resource.ResponseMessages.WELCOME_RESPONSE_MESSAGE;
         }
     }

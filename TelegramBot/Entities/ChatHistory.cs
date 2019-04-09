@@ -5,7 +5,7 @@ namespace TelegramBot.Entities
 {
     public class ChatHistory
     {
-        public long ChatId { get; set; }
+        public long Id { get; set; }
 
         public Dictionary<ChatStatusEnum, string> ChatProgress { get; set; }
 
