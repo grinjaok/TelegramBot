@@ -18,12 +18,13 @@ namespace TelegramBot.Services
 
         public ChatHistory GetChatById(long chatId)
         {
-            return this.redisClient.GetById(chatId);
+            var chat = this.redisClient.GetById(chatId);
+            return chat;
         }
 
         public void AddNewChat(ChatHistory chatHistory)
         {
-            this.redisClient.Store(chatHistory);
+            var createdChat = this.redisClient.Store(chatHistory);
         }
 
         public void RemoveChat(ChatHistory chatHistory)

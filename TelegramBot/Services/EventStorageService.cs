@@ -22,7 +22,7 @@ namespace TelegramBot.Services
 
         public void AddEventToStore(IncomingEvent incomingEvent)
         {
-            this.redisClient.Store(incomingEvent);
+            var store =this.redisClient.Store(incomingEvent);
         }
 
         public List<IncomingEvent> GetNextEvents()
@@ -31,8 +31,9 @@ namespace TelegramBot.Services
             int minutesInterval = 1;
             int timeZoneShift = 3;
             // todo in future add synchronization for user and server timezones
-            return allEvents.Where(x => x.InvocationTime > DateTime.Now.AddHours(timeZoneShift) &&
-                                               x.InvocationTime < DateTime.Now.AddMinutes(minutesInterval).AddHours(timeZoneShift)).ToList();
+            var events = allEvents.Where(x => x.InvocationTime > DateTime.Now.AddHours(timeZoneShift) &&
+                                              x.InvocationTime < DateTime.Now.AddMinutes(minutesInterval).AddHours(timeZoneShift)).ToList();
+            return events;
         }
 
         public void RemoveEvent(IncomingEvent incomingEvent)
