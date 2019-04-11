@@ -22,7 +22,6 @@ namespace TelegramBot.Services.ConversationProcessors
 
         public string ProcessMessage(string message, ChatHistory chat)
         {
-            chat.ChatProgress[ChatStatusEnum.HelloMessage] = message;
             this.chatStorageService.AddNewChat(chat);
             return Resource.ResponseMessages.WELCOME_RESPONSE_MESSAGE;
         }

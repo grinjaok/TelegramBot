@@ -29,10 +29,8 @@ namespace TelegramBot.Services.ConversationProcessors
             {
                 var parsedTime = DateTime.ParseExact(message, "HH:mm",
                     System.Globalization.CultureInfo.InvariantCulture);
-                var parsedDate =
-                    DateTime.Parse(chat.ChatProgress.First(x => x.Key == ChatStatusEnum.DateEntered).Value);
                 int minutesMultiplier = 60;
-                DateTime eventDate = parsedDate.AddMinutes(parsedTime.Hour * minutesMultiplier + parsedTime.Minute);
+                DateTime eventDate = chat.EventDate.AddMinutes(parsedTime.Hour * minutesMultiplier + parsedTime.Minute);
                 if (eventDate < DateTime.Now.Date)
                 {
                     return Resource.ResponseMessages.TIME_SMALLER_THAN_NOW;
@@ -41,7 +39,7 @@ namespace TelegramBot.Services.ConversationProcessors
                 var eventToAdd = new IncomingEvent()
                 {
                     Id = chat.Id,
-                    Description = chat.ChatProgress.First(x => x.Key == ChatStatusEnum.DescriptionEntered).Value,
+                    Description = chat.Description,
                     InvocationTime = eventDate
                 };
 

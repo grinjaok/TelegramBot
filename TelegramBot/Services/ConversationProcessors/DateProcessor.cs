@@ -24,7 +24,8 @@ namespace TelegramBot.Services.ConversationProcessors
                     return Resource.ResponseMessages.DATE_SMALLER_THAN_NOW;
                 }
 
-                chat.ChatProgress.Add(ChatStatusEnum.DateEntered, message);
+                chat.ChatProgress = ChatStatusEnum.DateEntered;
+                chat.EventDate = parsedDate;
                 return Resource.ResponseMessages.DATE_RESPONSE_MESSAGE;
             }
             catch (Exception)

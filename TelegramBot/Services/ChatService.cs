@@ -27,7 +27,7 @@ namespace TelegramBot.Services
             try
             {
                 ChatHistory chat = this.chatStorageService.GetChatById(update.Message.Chat.Id) ?? this.CreateNewChat(update.Message.Chat.Id);
-                IConversationProcessor processor = this.conversationProcessorFactory.GetConversationProcessor((ChatStatusEnum)chat.ChatProgress.Count);
+                IConversationProcessor processor = this.conversationProcessorFactory.GetConversationProcessor(chat.ChatProgress);
                 string responseMessage = processor.ProcessMessage(update.Message.Text, chat);
                 this.botService.Client.SendTextMessageAsync(chat.Id, responseMessage);
             }
@@ -40,7 +40,8 @@ namespace TelegramBot.Services
         {
             return new ChatHistory()
             {
-                Id = id
+                Id = id,
+                ChatProgress = ChatStatusEnum.HelloMessage
             };
         }
     }
