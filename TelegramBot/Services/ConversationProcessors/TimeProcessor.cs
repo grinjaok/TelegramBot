@@ -10,7 +10,7 @@ namespace TelegramBot.Services.ConversationProcessors
     {
         private readonly IEventStorageService eventStorageService;
         private readonly IChatStorageService chatStorageService;
-        private ChatStatusEnum chatStatus = ChatStatusEnum.TimeEntered;
+        private ChatStatusEnum chatStatus = ChatStatusEnum.DateEntered;
 
         public TimeProcessor(IEventStorageService eventStorageService, IChatStorageService chatStorageService)
         {

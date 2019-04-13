@@ -6,7 +6,7 @@ namespace TelegramBot.Services.ConversationProcessors
 {
     public class DescriptionProcessor : IConversationProcessor
     {
-        private ChatStatusEnum chatStatus = ChatStatusEnum.DescriptionEntered;
+        private ChatStatusEnum chatStatus = ChatStatusEnum.WaitDescription;
         private readonly IChatStorageService chatStorageService;
 
         public DescriptionProcessor(IChatStorageService chatStorageService)

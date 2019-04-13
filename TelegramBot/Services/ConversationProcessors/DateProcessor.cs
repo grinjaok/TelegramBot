@@ -7,7 +7,7 @@ namespace TelegramBot.Services.ConversationProcessors
 {
     public class DateProcessor : IConversationProcessor
     {
-        private ChatStatusEnum chatStatus = ChatStatusEnum.DateEntered;
+        private ChatStatusEnum chatStatus = ChatStatusEnum.DescriptionEntered;
         private readonly IChatStorageService chatStorageService;
 
         public DateProcessor(IChatStorageService chatStorageService)
