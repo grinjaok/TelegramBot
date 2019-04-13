@@ -6,7 +6,7 @@ namespace TelegramBot.Interfaces
     {
         ChatHistory GetChatById(long chatId);
 
-        void AddNewChat(ChatHistory chatHistory);
+        void AddUpdateChat(ChatHistory chatHistory);
 
         void RemoveChat(ChatHistory chatHistory);
     }

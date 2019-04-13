@@ -22,7 +22,7 @@ namespace TelegramBot.Services
             return chat;
         }
 
-        public void AddNewChat(ChatHistory chatHistory)
+        public void AddUpdateChat(ChatHistory chatHistory)
         {
             var createdChat = this.redisClient.Store(chatHistory);
         }
