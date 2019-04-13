@@ -22,6 +22,7 @@ namespace TelegramBot.Services
 
         public void AddEventToStore(IncomingEvent incomingEvent)
         {
+            incomingEvent.Id = this.redisClient.GetNextSequence();
             var store =this.redisClient.Store(incomingEvent);
         }
 
@@ -38,7 +39,7 @@ namespace TelegramBot.Services
 
         public void RemoveEvent(IncomingEvent incomingEvent)
         {
-            this.redisClient.DeleteById(incomingEvent.Id);
+            this.redisClient.DeleteById(incomingEvent.ChatId);
         }
     }
 }

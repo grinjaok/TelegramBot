@@ -18,7 +18,7 @@ namespace TelegramBot.Services
             var nextEvents = this.eventStorageService.GetNextEvents();
             nextEvents.ForEach(x =>
             {
-                this.botService.Client.SendTextMessageAsync(x.Id, x.Description);
+                this.botService.Client.SendTextMessageAsync(x.ChatId, x.Description);
                 this.eventStorageService.RemoveEvent(x);
             });
         }

@@ -38,7 +38,7 @@ namespace TelegramBot.Services.ConversationProcessors
 
                 var eventToAdd = new IncomingEvent()
                 {
-                    Id = chat.Id,
+                    ChatId = chat.Id,
                     Description = chat.Description,
                     InvocationTime = eventDate
                 };
