@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TelegramBot.Enums;
 
 namespace TelegramBot.Entities
 {
     public class ChatHistory
     {
-        public long ChatId { get; set; }
+        public long Id { get; set; }
 
-        public Dictionary<ChatStatusEnum, string> ChatProgress { get; set; }
+        public ChatStatusEnum ChatProgress { get; set; }
 
-        public ChatHistory()
-        {
-            this.ChatProgress = new Dictionary<ChatStatusEnum, string>();
-        }
+        public string Description { get; set; }
+
+        public DateTime EventDate { get; set; }
+        
     }
 }

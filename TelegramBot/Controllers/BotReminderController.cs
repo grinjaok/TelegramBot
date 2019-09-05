@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot.Types;
+using TelegramBot.Entities;
 using TelegramBot.Interfaces;
 
 namespace TelegramBot.Controllers
@@ -9,7 +10,6 @@ namespace TelegramBot.Controllers
     {
         private readonly IChatService chatService;
         private readonly IEventService eventService;
-
         public BotReminderController(IChatService chatService, IEventService eventService)
         {
             this.chatService = chatService;

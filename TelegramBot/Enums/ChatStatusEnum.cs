@@ -3,8 +3,8 @@
     public enum ChatStatusEnum
     {
         HelloMessage = 0,
-        DescriptionEntered = 1,
-        DateEntered = 2,
-        TimeEntered = 3
+        WaitDescription = 1,
+        DescriptionEntered = 2,
+        DateEntered = 3
     }
 }

@@ -7,7 +7,13 @@ namespace TelegramBot.Services.ConversationProcessors
 {
     public class DateProcessor : IConversationProcessor
     {
-        private ChatStatusEnum chatStatus = ChatStatusEnum.DateEntered;
+        private ChatStatusEnum chatStatus = ChatStatusEnum.DescriptionEntered;
+        private readonly IChatStorageService chatStorageService;
+
+        public DateProcessor(IChatStorageService chatStorageService)
+        {
+            this.chatStorageService = chatStorageService;
+        }
 
         public bool CanProcess(ChatStatusEnum chatStatus)
         {
@@ -24,7 +30,9 @@ namespace TelegramBot.Services.ConversationProcessors
                     return Resource.ResponseMessages.DATE_SMALLER_THAN_NOW;
                 }
 
-                chat.ChatProgress.Add(ChatStatusEnum.DateEntered, message);
+                chat.ChatProgress = ChatStatusEnum.DateEntered;
+                chat.EventDate = parsedDate;
+                this.chatStorageService.AddUpdateChat(chat);
                 return Resource.ResponseMessages.DATE_RESPONSE_MESSAGE;
             }
             catch (Exception)

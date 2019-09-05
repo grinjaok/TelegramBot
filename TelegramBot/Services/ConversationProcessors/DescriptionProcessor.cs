@@ -6,7 +6,13 @@ namespace TelegramBot.Services.ConversationProcessors
 {
     public class DescriptionProcessor : IConversationProcessor
     {
-        private ChatStatusEnum chatStatus = ChatStatusEnum.DescriptionEntered;
+        private ChatStatusEnum chatStatus = ChatStatusEnum.WaitDescription;
+        private readonly IChatStorageService chatStorageService;
+
+        public DescriptionProcessor(IChatStorageService chatStorageService)
+        {
+            this.chatStorageService = chatStorageService;
+        }
 
         public bool CanProcess(ChatStatusEnum chatStatus)
         {
@@ -15,7 +21,9 @@ namespace TelegramBot.Services.ConversationProcessors
 
         public string ProcessMessage(string message, ChatHistory chat)
         {
-            chat.ChatProgress.Add(ChatStatusEnum.DescriptionEntered, message);
+            chat.ChatProgress = ChatStatusEnum.DescriptionEntered;
+            chat.Description = message;
+            this.chatStorageService.AddUpdateChat(chat);
             return Resource.ResponseMessages.DESCRIPTION_RESPONSE_MESSAGE;
         }
     }

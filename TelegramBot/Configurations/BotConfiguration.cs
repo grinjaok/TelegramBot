@@ -5,5 +5,7 @@
         public string BotToken { get; set; }
 
         public string BaseUrl { get; set; }
+
+        public string RedisCacheConnectionString { get; set; }
     }
 }

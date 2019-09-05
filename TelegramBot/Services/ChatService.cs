@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Telegram.Bot.Types;
@@ -11,29 +12,36 @@ namespace TelegramBot.Services
     public class ChatService : IChatService
     {
         private readonly IBotService botService;
-        private readonly IStorageService storageService;
+        private readonly IChatStorageService chatStorageService;
         private readonly IConversationProcessorFactory conversationProcessorFactory;
 
-        public ChatService(IBotService botService, IStorageService storageService, IConversationProcessorFactory conversationProcessorFactory)
+        public ChatService(IBotService botService, IChatStorageService chatStorageService, IConversationProcessorFactory conversationProcessorFactory)
         {
             this.botService = botService;
-            this.storageService = storageService;
+            this.chatStorageService = chatStorageService;
             this.conversationProcessorFactory = conversationProcessorFactory;
         }
 
         public void IncomingMessage(Update update)
         {
-            ChatHistory chat = this.storageService.GetChatById(update.Message.Chat.Id) ?? this.CreateNewChat(update.Message.Chat.Id);
-            IConversationProcessor processor = this.conversationProcessorFactory.GetConversationProcessor((ChatStatusEnum)chat.ChatProgress.Count);
-            string responseMessage = processor.ProcessMessage(update.Message.Text, chat);
-            this.botService.Client.SendTextMessageAsync(chat.ChatId, responseMessage);
+            try
+            {
+                ChatHistory chat = this.chatStorageService.GetChatById(update.Message.Chat.Id) ?? this.CreateNewChat(update.Message.Chat.Id);
+                IConversationProcessor processor = this.conversationProcessorFactory.GetConversationProcessor(chat.ChatProgress);
+                string responseMessage = processor.ProcessMessage(update.Message.Text, chat);
+                this.botService.Client.SendTextMessageAsync(chat.Id, responseMessage);
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         private ChatHistory CreateNewChat(long id)
         {
             return new ChatHistory()
             {
-                ChatId = id
+                Id = id,
+                ChatProgress = ChatStatusEnum.HelloMessage
             };
         }
     }
